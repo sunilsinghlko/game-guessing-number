@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>number guess</title>
+    <style>
+      body {
+        background: radial-gradient(orange, pink, skyblue), purple;
+      }
+      #box {
+        min-height: 300px;
+        width: 400px;
+        background: rgba(0, 0, 0, 1);
+        border: 10px double white;
+        color: rgb(10, 100, 179);
+        margin: 150px auto;
+        border-radius: 20px;
+        box-shadow: 0px 0px 20px 2px white inset;
+        box-sizing: border-box;
+        padding: 2px 20px;
+      }
+      p {
+        color: rgb(240, 16, 16);
+        font-size: 35px;
+        text-align: center;
+        background: linear-gradient(white, yellow);
+        font-weight: 600;
+        border-radius: 13px 0px 13px 0px;
+        box-shadow: 0px 0px 5px 6px rgb(242, 136, 136);
+        border: none;
+      }
+      .a {
+        height: 50px;
+        width: 50px;
+        background: rgb(12, 3, 3);
+        border-radius: 5px;
+        box-shadow: 0px 0px 2px 4px rgb(242, 136, 136);
+        float: left;
+        margin: 17px;
+        text-align: center;
+        box-sizing: border-box;
+        line-height: 55px;
+        font-size: 20px;
+        color: white;
+        font-weight: 500;
+      }
+      i {
+        font-size: 25px;
+        color: rgb(7, 118, 229);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <p id="msg">Congrats!You Won</p>
+      <i></i><br />
+      <div class="a" onclick="demo(this)">1</div>
+      <div class="a" onclick="demo(this)">2</div>
+      <div class="a" onclick="demo(this)">3</div>
+      <div class="a" onclick="demo(this)">4</div>
+    </div>
+
+    <script>
+      function demo(x) {
+        var msg = document.querySelector("#msg");
+        var i = document.querySelector("i");
+        var w = document.querySelector("#w");
+        w.currentTime = 0; // audio start se play hone ke liye
+        var p = document.querySelector("#p");
+        p.play();
+        var l = document.querySelector("#l");
+        l.currentTime = 0;
+        var r = Math.floor(Math.random() * 4) + 1;
+        i.innerText = `Winning number ${r}`;
+        if (r == x.innerText) {
+          msg.innerText = `Congrats! You won`;
+          w.play();
+          l.pause();
+          msg.style.color = "green";
+        } else {
+          msg.innerText = `Opps!Try Again`;
+          msg.style.color = "red";
+          l.play();
+          w.pause();
+        }
+      }
+    </script>
+    <audio src="winn.mp3" id="w"></audio>
+    <audio src="lose.mp3" id="l"></audio>
+    <audio src="play.mp3" id="p"></audio>
+  </body>
+</html>
